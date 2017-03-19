@@ -25,6 +25,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -38,6 +39,7 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Map;
 
 
 public class DisplayActivity extends AppCompatActivity {
@@ -49,13 +51,13 @@ public class DisplayActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display);
     }
-    public void displayData(View v)
-    {
+    public void displayData(View v) throws JSONException {
             n = (TextView) findViewById(R.id.bkname);
             a = (TextView) findViewById(R.id.author);
         p = (TextView) findViewById(R.id.price);
         s = (TextView) findViewById(R.id.stock);
         mResult = (TextView) findViewById(R.id.result);
+
         //make GET request
         new GetDataTask().execute("http://192.168.2.4:1001/api/status");
     }
@@ -89,7 +91,33 @@ public class DisplayActivity extends AppCompatActivity {
             super.onPostExecute(result);
 
             //set data response to textView
-            mResult.setText(result);
+            mResult.setText("Success");
+            //n.setText("onPostExe");
+            //JSONObject obj = null;
+            JSONArray obj ;
+            try {
+                obj = new JSONArray(result);
+                //obj = new JSONObject(result);
+                for (int i = 0; i < obj.length(); i++) {
+                    JSONObject jsonobj = obj.getJSONObject(i);
+
+                    // JSONArray obj = new JSONArray(result);
+                   // String id = jsonobj.getString("id");
+                    String N1 = jsonobj.getString("bookname");
+                    String N2 = jsonobj.getString("author");
+                    String N3 = jsonobj.getString("price");
+                    String N4 = jsonobj.getString("stock");
+                    n.setText(N1);
+                   // n.setText("hello");
+                    a.setText("b4");
+                    a.setText(N2);
+                   // a.setText("after");
+                    p.setText(N3);
+                    s.setText(N4);
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
 
             //cancel progress dialog
             if (progressDialog != null) {
@@ -98,6 +126,7 @@ public class DisplayActivity extends AppCompatActivity {
         }
 
         private String getData(String urlPath) throws IOException {
+          //  n.setText("GET Data");
             StringBuilder result = new StringBuilder();
             BufferedReader bufferedReader =null;
 
@@ -122,11 +151,27 @@ public class DisplayActivity extends AppCompatActivity {
                 }
                 //JSONParser parser = new JSONParser();
 
-                JSONObject reader = new JSONObject(result.toString());
+                //JSONObject reader = new JSONObject(result.toString());
 
-            } catch (JSONException e) {
+
+               // if(obj!=null)
+                {
+                   /* String N1  = obj.getString("bookname");
+                    String N2  = obj.getString("author");
+                    String N3  = obj.getString("price");
+                    String N4  = obj.getString("stock");
+                    n.setText(N1);
+                    n.setText("hello");
+                    a.setText("b4");
+                    a.setText(N2);
+                    a.setText("after");
+                    p.setText(N3);
+                    s.setText(N4);*/
+                }
+
+            } /*catch (JSONException e) {
                 e.printStackTrace();
-            } finally {
+            } */finally {
                 if (bufferedReader != null) {
                     bufferedReader.close();
                 }
