@@ -1,57 +1,57 @@
 package com.example.vivekgandhi.bookstoreapp;
 
-        import android.app.ListActivity;
-        import android.support.v7.app.AppCompatActivity;
-        import android.os.Bundle;
-        import android.support.v7.widget.LinearLayoutManager;
-        import android.util.Log;
-        import android.view.View;
-        import android.widget.AdapterView;
-        import android.widget.ArrayAdapter;
-        import android.widget.EditText;
-        import android.os.Bundle;
+import android.app.ListActivity;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.os.Bundle;
 
-        import android.support.v7.app.AppCompatActivity;
-        import android.support.v7.widget.Toolbar;
-        import android.view.View;
-        import android.view.Menu;
-        import android.view.MenuItem;
-        import android.widget.ListView;
-        import android.widget.Spinner;
-        import android.widget.TextView;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.ListView;
+import android.widget.Spinner;
+import android.widget.TextView;
 
 
-        import android.app.ProgressDialog;
-        import android.os.AsyncTask;
-        import android.os.Bundle;
-        import android.support.v7.app.AppCompatActivity;
-        import android.support.v7.widget.Toolbar;
-        import android.view.View;
-        import android.view.Menu;
-        import android.view.MenuItem;
-        import android.widget.TextView;
-        import android.widget.Toast;
+import android.app.ProgressDialog;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.TextView;
+import android.widget.Toast;
 
-        import org.json.JSONArray;
-        import org.json.JSONException;
-        import org.json.JSONObject;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
-        import java.io.BufferedOutputStream;
-        import java.io.BufferedReader;
-        import java.io.BufferedWriter;
-        import java.io.IOException;
-        import java.io.InputStream;
-        import java.io.InputStreamReader;
-        import java.io.OutputStream;
-        import java.io.OutputStreamWriter;
-        import java.net.HttpURLConnection;
-        import java.net.URL;
-        import java.util.ArrayList;
-        import java.util.List;
-        import java.util.Map;
-        import android.support.v7.widget.RecyclerView;
+import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import android.support.v7.widget.RecyclerView;
 
-public class DisplayActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
+public class DispFiltActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
     String[] cN;
     ArrayAdapter<String> adapter;
@@ -94,7 +94,7 @@ public class DisplayActivity extends AppCompatActivity implements AdapterView.On
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         String itemval = adapterView.getItemAtPosition(i).toString();
-        Toast.makeText(DisplayActivity.this,itemval,Toast.LENGTH_SHORT).show();
+        Toast.makeText(DispFiltActivity.this,itemval,Toast.LENGTH_SHORT).show();
     }
 /*
 AsyncTask's generic types
@@ -115,7 +115,7 @@ Not all types are always used by an asynchronous task. To mark a type as unused,
 
             super.onPreExecute();
 
-            progressDialog = new ProgressDialog(DisplayActivity.this);
+            progressDialog = new ProgressDialog(DispFiltActivity.this);
             progressDialog.setMessage("Loading data...");
             progressDialog.show();
         }
@@ -164,10 +164,10 @@ Not all types are always used by an asynchronous task. To mark a type as unused,
                 }
                 // Setup and Handover data to recyclerview
                 mRVFishPrice = (RecyclerView)findViewById(R.id.fishPriceList);
-                mAdapter = new BooksAdapter(DisplayActivity.this, data);
+                mAdapter = new BooksAdapter(DispFiltActivity.this, data);
                 mRVFishPrice.setAdapter(mAdapter);
-                mRVFishPrice.setLayoutManager(new LinearLayoutManager(DisplayActivity.this));
-              //  mAdapter.notifyDataSetChanged();
+                mRVFishPrice.setLayoutManager(new LinearLayoutManager(DispFiltActivity.this));
+                //  mAdapter.notifyDataSetChanged();
              /*   ArrayAdapter<String> adapter = new ArrayAdapter<String>(DisplayActivity.this,
                         android.R.layout.linearLayout5, cN);
                 s.setAdapter(adapter);*/
@@ -203,22 +203,16 @@ Not all types are always used by an asynchronous task. To mark a type as unused,
                 while ((line = bufferedReader.readLine()) != null) {
 
                     result.append(line).append("\n");
-
-                }
-
-
-
-            } /*catch (JSONException e) {
+ }
+  } /*catch (JSONException e) {
                 e.printStackTrace();
             } */finally {
                 if (bufferedReader != null) {
                     bufferedReader.close();
                 }
             }
-
-            return result.toString();
+   return result.toString();
         }
-
 
     }
 

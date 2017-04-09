@@ -6,20 +6,20 @@ import java.io.Serializable;
  * Created by Vivek Gandhi on 3/19/2017.
  */
 
-public class Books implements Serializable {
+public class Books /*implements Serializable*/ {
 
-   /* @SerializedName("id")
-    private Integer id;
-    @SerializedName("bookname")
-    private String bookName;
-    @SerializedName("author")
-    private String authorName;
-    @SerializedName("price")
-    private Integer price;
-    @SerializedName("stock")
-    private Integer stock;
+   //@SerializedName("id")
+    public String id;
+   // @SerializedName("bookname")
+   public String bookName;
+   // @SerializedName("author")
+   public String authorName;
+   // @SerializedName("price")
+   public Integer price;
+   // @SerializedName("stock")
+   public Integer stock;
 
-    public Books(Integer id, String bookName, String authorName, Integer price, Integer stock) {
+ /*   public Books(Integer id, String bookName, String authorName, Integer price, Integer stock) {
         this.id = id;
         this.bookName = bookName;
         this.authorName = authorName;
